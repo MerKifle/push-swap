@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
+/*   Updated: 2023/03/13 20:09:46 by Degef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include "libft/libft.h"
+
+typedef struct t_list
+{
+	int				data;
+	int				sort_index;
+	struct t_list	*next;
+}					t_node;
+
+// utils
+int		check_dup(char *str);
+int		check_invalid_args(char *str);
+t_node	*lstlast(t_node *lst);
+int		is_sorted(t_node *stack);
+void	message(int nb);
+
+// operations
+void	swap(t_node *stack, char *str);
+void	push(t_node **stack_1, t_node **stack_2, char *str);
+void	rotate(t_node **stack, char *str);
+void	reverse_rotate(t_node **stack, char *str);
+void	push_a(t_node **stack_1, t_node **stack_2, char *str);
+
+// put sorting index
+int		find_len(t_node *stack);
+void	sort_int_array(int **tab, int size);
+void	assign_index(int len, t_node **stack, int *sorted_list);
+void	put_sorting_index(t_node **stack);
+int		find_midpoint(t_node *stack);
+
+#endif
