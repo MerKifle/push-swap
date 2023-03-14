@@ -6,11 +6,32 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:35:17 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/13 21:09:04 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/14 16:30:29 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	create_linked_list(char *storage, t_node **a)
+{
+	t_node	*nod;
+	int		num;
+	char	**str;
+
+	str = ft_split(storage, ' ');
+	while (*str)
+	{
+		num = ft_atoi(*str);
+		nod = malloc(sizeof(t_node));
+		nod->data = num;
+		nod->next = NULL;
+		nod->sort_index = 0;
+		if (*a)
+			nod->next = (*a);
+		(*a) = nod;
+		str++;
+	}
+}
 
 t_node	*lstlast(t_node *lst)
 {
@@ -42,38 +63,3 @@ void	message(int nb)
 	// 	write(1, "OK\n", 3);
 	exit(0);
 }
-
-// int	check_arguments(char *argv)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = 1;
-// 	while (argv[i])
-// 	{	if (argv[i])
-// 		if (argv[i] < '0' || argv[i] > '9')
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
-
-// int	find_dup(t_node *a)
-// {
-// 	t_node	*next;
-
-// 	while (a)
-// 	{
-// 		next = a->next;
-// 		while (next)
-// 		{
-// 			if (a->data == next->data)
-// 				return (1);
-// 			next = next->next;
-// 		}
-// 		a = a->next;
-// 	}
-// 	return (0);
-// }
-
-
