@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:47 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/13 20:14:16 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/15 15:25:28 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,59 +29,80 @@ void	swap(t_node *stack, char *str)
 		write(1, "sb\n", 3);
 }
 
-void	push_a(t_node **stack_1, t_node **stack_2, char *str)
-{
-	t_node	*new_node;
-	t_node	*update_node;
-	int		temp;
-	int		temp2;
-	int		mid_point;
+// void	push_a(t_node **stack_1, t_node **stack_2, char *str)
+// {
+// 	t_node	*new_node;
+// 	t_node	*update_node;
+// 	int		temp;
+// 	int		temp2;
+// 	int		mid_point;
 
-	if (!stack_1 || !stack_2 || !(*stack_2))
-		return ;
-	mid_point = find_midpoint(*stack_2);
-	update_node = *stack_2;
-	while ((*stack_2)->next != NULL && find_len(*stack_2) > 2)
-	{
-		if ((*stack_2)->data < mid_point)
-		{
-			temp = (*stack_2)->data;
-			temp2 = (*stack_2)->sort_index;
-			new_node = malloc(sizeof(t_node));
-			if (!new_node)
-				return ;
-			new_node->data = temp;
-			new_node->sort_index = temp2;
-			new_node->next = *stack_1;
-			*stack_1 = new_node;
-			*stack_2 = update_node;
-		}
-		*stack_2 = (*stack_2)->next;
-	}
-	if (ft_strncmp(str, "pa", 2) == 0)
-		write(1, "pa\n", 3);
-	else if (ft_strncmp(str, "pb", 2) == 0)
-		write(1, "pb\n", 3);
-}
+// 	if (!stack_1 || !stack_2 || !(*stack_2))
+// 		return ;
+// 	mid_point = find_midpoint(*stack_2);
+// 	update_node = *stack_2;
+// 	while ((*stack_2)->next != NULL && find_len(*stack_2) > 2)
+// 	{
+// 		if ((*stack_2)->data < mid_point)
+// 		{
+// 			temp = (*stack_2)->data;
+// 			temp2 = (*stack_2)->sort_index;
+// 			new_node = malloc(sizeof(t_node));
+// 			if (!new_node)
+// 				return ;
+// 			new_node->data = temp;
+// 			new_node->sort_index = temp2;
+// 			new_node->next = *stack_1;
+// 			*stack_1 = new_node;
+// 			*stack_2 = update_node;
+// 		}
+// 		*stack_2 = (*stack_2)->next;
+// 	}
+// 	if (ft_strncmp(str, "pa", 2) == 0)
+// 		write(1, "pa\n", 3);
+// 	else if (ft_strncmp(str, "pb", 2) == 0)
+// 		write(1, "pb\n", 3);
+// }
+
+// void	push(t_node **stack_1, t_node **stack_2, char *str)
+// {
+// 	t_node	*new_node;
+// 	int		temp;
+// 	int		temp2;
+// 	t_node	*temp3;
+
+// 	if (!stack_1 || !stack_2 || !(*stack_2))
+// 		return ;
+// 	temp = (*stack_2)->data;
+// 	temp2 = (*stack_2)->sort_index;
+// 	new_node = malloc(sizeof(t_node));
+// 	if (!new_node)
+// 		return ;
+// 	new_node->data = temp;
+// 	new_node->sort_index = temp2;
+// 	new_node->next = *stack_1;
+// 	*stack_1 = new_node;
+// 	temp3 = (*stack_2);
+// 	*stack_2 = (*stack_2)->next;
+// 	temp3->next = NULL;
+// 	free(temp3);
+// 	if (ft_strncmp(str, "pa", 2) == 0)
+// 		write(1, "pa\n", 3);
+// 	else if (ft_strncmp(str, "pb", 2) == 0)
+// 		write(1, "pb\n", 3);
+// }
 
 void	push(t_node **stack_1, t_node **stack_2, char *str)
 {
 	t_node	*new_node;
-	int		temp;
-	int		temp2;
+	t_node	*temp;
 
 	if (!stack_1 || !stack_2 || !(*stack_2))
 		return ;
-	temp = (*stack_2)->data;
-	temp2 = (*stack_2)->sort_index;
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return ;
-	new_node->data = temp;
-	new_node->sort_index = temp2; 
-	new_node->next = *stack_1;
-	*stack_1 = new_node;
+	temp = *stack_2;
 	*stack_2 = (*stack_2)->next;
+	temp->next = *stack_1;
+	*stack_1 = temp;
 	if (ft_strncmp(str, "pa", 2) == 0)
 		write(1, "pa\n", 3);
 	else if (ft_strncmp(str, "pb", 2) == 0)
@@ -94,15 +115,10 @@ void	rotate(t_node **stack, char *str)
 
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
-    temp = malloc(sizeof(t_node));
-    if (!temp)
-        return ;
-    temp->data = (*stack)->data;
-	temp->sort_index = (*stack)->sort_index;
-    temp->next = NULL;
+	temp = *stack;
 	(*stack) = (*stack)->next;
-    lstlast((*stack))->next = temp;
-    // free(temp);
+	temp->next = NULL;
+	lstlast((*stack))->next = temp;
 	if (ft_strncmp(str, "ra", 2) == 0)
 		write(1, "ra\n", 3);
 	else if (ft_strncmp(str, "rb", 2) == 0)

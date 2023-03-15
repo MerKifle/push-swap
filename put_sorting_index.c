@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:17:48 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/13 19:45:04 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/14 21:56:09 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	find_midpoint(t_node *stack)
 	}
 	sort_int_array(&sorted_list, len);
 	i = sorted_list[len / 2];
+	free(sorted_list);
 	return (i);
 }
 
@@ -117,4 +118,5 @@ void	put_sorting_index(t_node **stack)
 	temp = *stack;
 	assign_index(len, &temp, sorted_list);
 	*stack = temp;
+	free(sorted_list);
 }

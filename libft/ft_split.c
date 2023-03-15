@@ -3,73 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 12:09:26 by marvin            #+#    #+#             */
-/*   Updated: 2022/12/17 12:09:26 by marvin           ###   ########.fr       */
+/*   Created: 2022/12/24 17:21:52 by Degef             #+#    #+#             */
+/*   Updated: 2022/12/24 17:21:52 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static int	ft_string_len(char const *s, char c)
+static int	count_strings(char const *str, char c)
 {
 	int	i;
-	int	j;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && str[i] == c)
+			i++;
+		if (str[i] != '\0')
+			count++;
+		while (str[i] != '\0' && str[i] != c)
+			i++;
+	}
+	return (count);
+}
+
+static char	*ft_word(char const *str, char c)
+{
+	int		len_word;
+	int		i;
+	char	*word;
 
 	i = 0;
-	j = 0;
-	while (s[i])
+	len_word = 0;
+	while (str[len_word] && str[len_word] != c)
+		len_word++;
+	word = (char *)malloc(sizeof(char) * (len_word + 1));
+	if (!word)
+		return (0);
+	while (i < len_word)
 	{
-		while (s[i] != '\0' && s[i] == c)
-			i++;
-		if (s[i] != '\0')
-			j++;
-		while (s[i] != '\0' && s[i] != c)
-			i++;
+		word[i] = str[i];
+		i++;
 	}
-	return (j);
+	word[i] = '\0';
+	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *str, char c)
+
 {
-	char	**result;
+	char	**strings;
 	int		i;
-	int		j;
 
-	if ((!s && !c) || !s)
+	i = 0;
+	if (!str)
 		return (0);
-	j = ft_string_len(s, c);
-	result = (char **)malloc((j + 1) * sizeof(char *));
-	if (!result)
+	strings = (char **)malloc(sizeof(char *)
+			* (count_strings(str, c) + 1));
+	if (!strings)
 		return (0);
-	j = 0;
-	while (*s)
+	while (*str != '\0')
 	{
-		if (*s != c)
+		while (*str != '\0' && *str == c)
+			str++;
+		if (*str != '\0')
 		{
-			i = 0;
-			while (*s != '\0' && *s != c && ++i)
-				s++;
-			result[j++] = ft_substr(s - i, 0, i);
+			strings[i] = ft_word(str, c);
+			i++;
 		}
-		else
-			s++;
+		while (*str && *str != c)
+			str++;
 	}
-	result[j] = 0;
-	return (result);
+	strings[i] = 0;
+	return (strings);
 }
-
-// int main()
+// #include <stdio.h>
+// int	main()
 // {
-// 	char *s="hello:world";
-// 	char c = ':';
-// 	char **result = ft_split(s, c);
-// 	int i = 0;
-// 	while (result[i])
+// 	int		index;
+// 	char	**split;
+// 	split = ft_split("helloxworldx42", 'x');
+// 	index = 0;
+// 	while (split[index])
 // 	{
-// 		printf("%s\n", result[i++]);
-// 		// printf("%d", i);
+// 		printf("%s\n", split[index]);
+// 		index++;
 // 	}
-// 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/14 16:49:29 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/15 19:23:22 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,28 @@ void	adjust_a(t_node **a, t_node **b)
 	rearrange_a(a, target);
 }
 
+void	free_linked_list(t_node **stack)
+{
+	t_node	*temp;
+	t_node	*temp2;
+
+	temp = (*stack);
+	while (temp)
+	{
+		temp2 = temp;
+		temp = temp->next;
+		temp2->next = NULL;
+		free(temp2);
+	}
+}
+
 void	push_swap(t_node **a)
 {
 	t_node	*b;
 
 	b = NULL;
 	if (is_sorted(*a))
-		message(1);
+		exit(0);
 	else if (find_len(*a) == 2)
 		swap(*a, "sa");
 	else
@@ -68,7 +83,7 @@ void	push_swap(t_node **a)
 		push(a, &b, "pa");
 	}
 	rearrange_a(a, 0);
-	free(b);
+	free_linked_list(&b);
 	return ;
 }
 
@@ -77,6 +92,7 @@ int	main(int argc, char **argv)
 	t_node	*a;
 	int		i;
 	char	*storage;
+	char	*str;
 
 	if (argc >= 2)
 	{
@@ -89,16 +105,16 @@ int	main(int argc, char **argv)
 		}
 		if (!check_invalid_args(storage) || !check_dup(storage))
 			message(0);
-		create_linked_list(storage, &a);
+		a = NULL;
+		create_linked_list(&storage, &a);
 		put_sorting_index(&a);
 		push_swap(&a);
-	}	
-	return (0);
-}
-
 		// while (a)
 		// {
 		// 	printf("%d : %d\n", a->data, a->sort_index);
 		// 	a = a->next;
-		// 	// free(lstlast(a));
 		// }
+		free_linked_list(&a);
+	}	
+	return (0);
+}
