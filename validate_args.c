@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:29:20 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/15 17:00:19 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/16 17:28:20 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	check_dup(char *str)
 	char	**storage;
 	int		i;
 	int		j;
+	int		len;
 
 	i = 0;
 	j = 0;
@@ -26,7 +27,10 @@ int	check_dup(char *str)
 		j = i + 1;
 		while (storage[j])
 		{
-			if (ft_strncmp(storage[i], storage[j], ft_strlen(storage[i])) == 0)
+			len = ft_strlen(storage[i]);
+			if (ft_strlen(storage[j]) > ft_strlen(storage[i]))
+				len = ft_strlen(storage[j]);
+			if (ft_strncmp(storage[i], storage[j], len) == 0)
 				return (0);
 			j++;
 		}

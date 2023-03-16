@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/15 19:23:22 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/16 23:39:09 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,63 @@ void	free_linked_list(t_node **stack)
 	}
 }
 
+int	find_midpt(t_node *stack)
+{
+	int	i;
+	int	sum;
+
+	i = 0;
+	sum = 0;
+	while (stack)
+	{
+		sum += stack->sort_index;
+		i++;
+		stack = stack->next;
+	}
+	return ((sum / i) + 1);
+}
+
+void	send_to_b(t_node **a, t_node **b)
+{
+	int	total_nodes_to_go;
+	int	mid_pt;
+	int	i;
+
+	total_nodes_to_go = find_len(*a) - 2;
+	while (total_nodes_to_go > 0)
+	{
+		mid_pt = find_midpt(*a);
+		i = ((total_nodes_to_go / 2) + 1);
+		while (i > 0)
+		{
+			if ((*a)->sort_index < mid_pt)
+			{
+				push(b, a, "pb");
+				i--;
+				total_nodes_to_go--;
+			}
+			else if ((*a)->next->sort_index < mid_pt)
+			{
+				swap(*a, "sa");
+				push(b, a, "pb");
+				i--;
+				total_nodes_to_go--;
+			}
+			else if ((lstlast(*a)->sort_index < mid_pt))
+			{
+				reverse_rotate(a, "ra");
+				push(b, a, "pb");
+				i--;
+				total_nodes_to_go--;
+			}
+			else
+				rotate(a, "ra");
+		}
+
+	}
+
+}
+
 void	push_swap(t_node **a)
 {
 	t_node	*b;
@@ -72,10 +129,11 @@ void	push_swap(t_node **a)
 		swap(*a, "sa");
 	else
 	{
-		while (find_len(*a) > 2)
-		{	
-			push(&b, a, "pb");
-		}
+		// if (find_len(*a) > 2)
+		// {	
+			// push(&b, a, "pb");
+			send_to_b(a, &b);
+		// }
 	}
 	while (b)
 	{
@@ -103,6 +161,7 @@ int	main(int argc, char **argv)
 			storage = ft_strjoin(storage, argv[i++]);
 			storage = ft_strjoin(storage, " ");
 		}
+		// printf("%s\n", storage);
 		if (!check_invalid_args(storage) || !check_dup(storage))
 			message(0);
 		a = NULL;

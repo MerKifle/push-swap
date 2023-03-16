@@ -6,18 +6,16 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:17:48 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/14 21:56:09 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/16 18:11:52 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_len(t_node *stack)
+int	find_len(t_node *stack)
 {
-	int len;
-	// t_node *temp;
+	int	len;
 
-	// temp = *stack;
 	len = 0;
 	while (stack)
 	{
@@ -50,7 +48,7 @@ void	sort_int_array(int **tab, int size)
 	*tab = new;
 }
 
-void assign_index(int len, t_node **stack, int *sorted_list)
+void	assign_index(int len, t_node **stack, int *sorted_list)
 {
 	int		i;
 	t_node	*temp;
@@ -70,30 +68,6 @@ void assign_index(int len, t_node **stack, int *sorted_list)
 		}
 		temp = temp->next;
 	}
-}
-
-int	find_midpoint(t_node *stack)
-{
-	int		len;
-	t_node	*temp;
-	int		i;
-	int		*sorted_list;
-
-	temp = stack;
-	len = find_len(stack);
-	sorted_list = malloc(sizeof(int) * len);
-	if (!sorted_list)
-		return (0);
-	i = 0;
-	while (temp)
-	{
-		sorted_list[i++] = temp->data;
-		temp = temp->next;
-	}
-	sort_int_array(&sorted_list, len);
-	i = sorted_list[len / 2];
-	free(sorted_list);
-	return (i);
 }
 
 void	put_sorting_index(t_node **stack)
