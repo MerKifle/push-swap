@@ -6,11 +6,27 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:35:17 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/15 16:39:59 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/18 15:30:54 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
+void	free_linked_list(t_node **stack)
+{
+	t_node	*temp;
+	t_node	*temp2;
+
+	temp = (*stack);
+	while (temp)
+	{
+		temp2 = temp;
+		temp = temp->next;
+		temp2->next = NULL;
+		free(temp2);
+	}
+}
 
 void	free_array(char ***str)
 {

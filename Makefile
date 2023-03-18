@@ -6,13 +6,14 @@
 #    By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:05:04 by Degef             #+#    #+#              #
-#    Updated: 2023/03/14 16:51:41 by Degef            ###   ########.fr        #
+#    Updated: 2023/03/18 15:29:57 by Degef            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
-M_SRCS	= push_swap.c push_swap_utils.c operations.c put_sorting_index.c validate_args.c count_moves.c find_min_max.c
+M_SRCS	= push_swap.c push_swap_utils.c operations.c put_sorting_index.c validate_args.c count_moves.c \
+			find_min_max.c sort_three.c send_to_b.c
 
 FLAGS	= -Wall -Wextra -Werror
 CC		= cc

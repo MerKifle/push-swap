@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/15 16:38:59 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/18 15:33:59 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,19 @@ typedef struct t_list
 	struct t_list	*next;
 }					t_node;
 
+//push_swap
+void	rearrange_a(t_node **stack, int point);
+void	adjust_a(t_node **a, t_node **b);
+void	push_swap(t_node **a);
+
 // utils
 t_node	*lstlast(t_node *lst);
 int		is_sorted(t_node *stack);
 void	message(int nb);
 void	create_linked_list(char **storage, t_node **a);
 void	free_array(char ***str);
+void	free_linked_list(t_node **stack);
+
 
 //validate_args
 int		check_dup(char *str);
@@ -58,5 +65,15 @@ int		count_backward_moves(t_node *stack, int point);
 void	find_min_and_max(int *a_min, int *a_max, t_node *temp);
 void	check_min_and_max_diff(int *min_pos_diff, int *max_diff,
 			t_node **a, t_node **b);
+//sort three
+void	sort_three(t_node **stack);
+
+//send_to_b
+void	send_to_b_if_less_200(t_node **a, t_node **b);
+void	send_to_b_if_more_200(t_node **a, t_node **b);
+int		find_midpt(t_node *stack);
+void	send_chunk(t_node **stack1, t_node **stack2,
+			int chunk, int *total_nodes_to_go);
+void	send_rest(t_node **stack1, t_node **stack2, int num);
 
 #endif
