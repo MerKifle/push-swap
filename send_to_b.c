@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:44:11 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 16:41:24 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/20 18:38:02 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ void	send_to_b_if_less_200(t_node **a, t_node **b)
 			}
 			else if ((*a)->next->sort_index < mid_pt)
 			{
-				rotate(a, "ra");
+				rotate(a, "ra", 1);
 				push(b, a, "pb");
 				i--;
 				total_nodes_to_go--;
 			}
 			else if ((lstlast(*a)->sort_index < mid_pt))
 			{
-				reverse_rotate(a, "rra");
+				reverse_rotate(a, "rra", -1);
 				push(b, a, "pb");
 				i--;
 				total_nodes_to_go--;
 			}
 			else
-				rotate(a, "ra");
+				rotate(a, "ra", 1);
 		}
 	}
 }
@@ -83,13 +83,10 @@ void	send_chunk(t_node **stack1, t_node **stack2,
 			rearrange_a(stack1, temp->sort_index);
 			push(stack2, stack1, "pb");
 			temp = *stack1;
-			// printf("\n note:%d \n", temp->sort_index);
 			total_nodes_to_go--;
 		}
 		temp = temp->next;
 	}
-	// *stack1 = temp;
-
 }
 
 void	send_to_b_if_more_200(t_node **a, t_node **b)
@@ -106,7 +103,7 @@ void	send_to_b_if_more_200(t_node **a, t_node **b)
 		send_chunk(a, b, chunk, &total_nodes_to_go);
 		chunk += i;
 	}
-	if (total_nodes_to_go < chunk && total_nodes_to_go > 0)
+	if (total_nodes_to_go > 0)
 	{
 		send_to_b_if_less_200(a, b);
 	}

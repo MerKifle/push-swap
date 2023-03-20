@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:34:50 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/17 21:22:24 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/20 18:34:35 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	sort_three(t_node **stack)
 	else if ((first < second) && (first < third))
 	{
 		swap(*stack, "sa");
-		rotate(stack, "ra");
+		rotate(stack, "ra", 1);
 	}
 	else if ((first > second) && (first < third) && (second < third))
 		swap(*stack, "sa");
 	else if ((first < second) && (first > third))
-		reverse_rotate(stack, "rra");
+		reverse_rotate(stack, "rra", -1);
 	else if ((first > second) && (first > third) && (second < third))
-		rotate(stack, "ra");
+		rotate(stack, "ra", 1);
 	else if ((first > second) && (first > third) && (second > third))
 	{
 		swap(*stack, "sa");
-		reverse_rotate(stack, "rra");
+		reverse_rotate(stack, "rra", -1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 15:33:59 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/20 18:07:44 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ typedef struct t_list
 {
 	int				data;
 	int				sort_index;
+	int				cost_a;
+	int				cost_b;
+	int				pos;
 	struct t_list	*next;
 }					t_node;
 
 //push_swap
 void	rearrange_a(t_node **stack, int point);
-void	adjust_a(t_node **a, t_node **b);
+void	adjust(int cheapest_pos, t_node **a, t_node **b);
 void	push_swap(t_node **a);
 
 // utils
@@ -46,8 +49,8 @@ int		check_invalid_args(char *str);
 // operations
 void	swap(t_node *stack, char *str);
 void	push(t_node **stack_1, t_node **stack_2, char *str);
-void	rotate(t_node **stack, char *str);
-void	reverse_rotate(t_node **stack, char *str);
+void	rotate(t_node **stack, char *str, int cost);
+void	reverse_rotate(t_node **stack, char *str, int cost);
 void	push_a(t_node **stack_1, t_node **stack_2, char *str);
 
 // put sorting index

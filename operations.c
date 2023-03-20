@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:47 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 15:16:31 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/20 17:57:31 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,44 +46,46 @@ void	push(t_node **stack_1, t_node **stack_2, char *str)
 		write(1, "pb\n", 3);
 }
 
-void	rotate(t_node **stack, char *str)
+void	rotate(t_node **stack, char *str, int cost)
 {
 	t_node	*temp;
 
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
-	temp = *stack;
-	(*stack) = (*stack)->next;
-	temp->next = NULL;
-	lstlast((*stack))->next = temp;
-	if (ft_strncmp(str, "ra", 2) == 0)
-		write(1, "ra\n", 3);
-	else if (ft_strncmp(str, "rb", 2) == 0)
-		write(1, "rb\n", 3);
+	while (cost)
+	{
+		temp = *stack;
+		(*stack) = (*stack)->next;
+		temp->next = NULL;
+		lstlast((*stack))->next = temp;
+		if (ft_strncmp(str, "ra", 2) == 0)
+			write(1, "ra\n", 3);
+		else if (ft_strncmp(str, "rb", 2) == 0)
+			write(1, "rb\n", 3);
+		cost--;
+	}
 }
 
-void	reverse_rotate(t_node **stack, char *str)
+void	reverse_rotate(t_node **stack, char *str, int cost)
 {
 	t_node	*temp;
 	t_node	*looping;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	temp = lstlast(*stack);
-	looping = *stack;
-	while (looping->next != NULL)
+	while (cost < 0)
 	{
-		if (looping->next->data == temp->data)
-		{
-			looping->next = NULL;
-			break ;
-		}
-		looping = looping->next;
+		temp = lstlast(*stack);
+		looping = *stack;
+		while (looping->next != NULL && looping->next->data != temp->data)
+			looping = looping->next;
+		looping->next = NULL;
+		temp->next = *stack;
+		*stack = temp;
+		if (ft_strncmp(str, "rra", 3) == 0)
+			write(1, "rra\n", 4);
+		else if (ft_strncmp(str, "rrb", 3) == 0)
+			write(1, "rrb\n", 4);
+		cost++;
 	}
-	temp->next = *stack;
-	*stack = temp;
-	if (ft_strncmp(str, "rra", 3) == 0)
-		write(1, "rra\n", 4);
-	else if (ft_strncmp(str, "rrb", 3) == 0)
-		write(1, "rrb\n", 4);
 }
