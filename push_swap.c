@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
+/*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 16:38:43 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/18 18:31:28 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,11 @@ void	push_swap(t_node **a)
 		exit(0);
 	else if (find_len(*a) == 2)
 		swap(*a, "sa");
-	else if (find_len(*a) == 3)
-		sort_three(a);
-	else if (find_len(*a) < 200)
-	{
+	else if (find_len(*a) >= 4 && find_len(*a) <= 200)
 		send_to_b_if_less_200(a, &b);
-		sort_three(a);
-	}
 	else if (find_len(*a) > 200)
-	{
 		send_to_b_if_more_200(a, &b);
-		sort_three(a);
-	}
+	sort_three(a);
 	while (b)
 	{
 		adjust_a(a, &b);
@@ -77,7 +70,6 @@ void	push_swap(t_node **a)
 	return ;
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_node	*a;
@@ -85,7 +77,6 @@ int	main(int argc, char **argv)
 	char	*storage;
 	char	*str;
 
-	// printf("here\n");
 	if (argc >= 2)
 	{
 		i = 1;

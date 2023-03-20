@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
+/*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:44:11 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 16:41:24 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/18 18:42:00 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,10 @@ void	send_chunk(t_node **stack1, t_node **stack2,
 			rearrange_a(stack1, temp->sort_index);
 			push(stack2, stack1, "pb");
 			temp = *stack1;
-			// printf("\n note:%d \n", temp->sort_index);
 			total_nodes_to_go--;
 		}
 		temp = temp->next;
 	}
-	// *stack1 = temp;
-
 }
 
 void	send_to_b_if_more_200(t_node **a, t_node **b)

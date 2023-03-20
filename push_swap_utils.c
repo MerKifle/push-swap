@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
+/*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:35:17 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 15:30:54 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/20 11:13:53 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 void	free_linked_list(t_node **stack)
 {
@@ -93,7 +92,5 @@ void	message(int nb)
 {
 	(void)nb;
 	write(2, "Error\n", 6);
-	// else if (nb)
-	// 	write(1, "OK\n", 3);
 	exit(1);
 }
