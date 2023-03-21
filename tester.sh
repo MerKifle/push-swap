@@ -5155,5 +5155,5 @@ fi
 
 fi
 
-rm -rf 0
-rm -rf test_check.txt
+# rm -rf 0
+# rm -rf test_check.txt

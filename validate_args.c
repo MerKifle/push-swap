@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:29:20 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/20 20:05:01 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:54:58 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,40 @@ static int	check_if_num(char *str)
 	}
 }
 
+static int	check_zeros_leading_dup(char **storage, int len)
+{
+	int		i;
+	int		*array_int;
+	int		j;
+
+	i = -1;
+	array_int = malloc(len * sizeof(int));
+	while (++i < len)
+		array_int[i] = ft_atoi(storage[i]);
+	i = 0;
+	while (i < (len - 1))
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (array_int[i] == array_int[j])
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	free(array_int);
+	free_array(&storage);
+	return (1);
+}
+
 int	check_invalid_args(char *str)
 {
 	int		i;
 	char	**storage;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (is_valid(str[i]))
 			i++;
@@ -82,6 +109,7 @@ int	check_invalid_args(char *str)
 			return (0);
 		i++;
 	}
-	free_array(&storage);
+	if (!check_zeros_leading_dup(storage, i))
+		return (0);
 	return (1);
 }

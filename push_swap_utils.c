@@ -6,43 +6,16 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 19:35:17 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/20 11:13:53 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:51:10 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_linked_list(t_node **stack)
-{
-	t_node	*temp;
-	t_node	*temp2;
-
-	temp = (*stack);
-	while (temp)
-	{
-		temp2 = temp;
-		temp = temp->next;
-		temp2->next = NULL;
-		free(temp2);
-	}
-}
-
-void	free_array(char ***str)
-{
-	int	i;
-
-	i = 0;
-	while ((*str)[i])
-		i++;
-	while (i >= 0)
-		free((*str)[i--]);
-	free(*str);
-}
-
 void	create_linked_list(char **storage, t_node **a)
 {
 	t_node	*nod;
-	int		num;
+	long	num;
 	char	**str;
 	int		i;
 
@@ -52,6 +25,8 @@ void	create_linked_list(char **storage, t_node **a)
 	while (str[i])
 	{
 		num = ft_atoi(str[i]);
+		if (num > INT_MAX || num < INT_MIN)
+			message(0);
 		nod = malloc(sizeof(t_node));
 		nod->data = num;
 		nod->next = NULL;
@@ -63,7 +38,6 @@ void	create_linked_list(char **storage, t_node **a)
 		i++;
 	}
 	free_array(&str);
-	// free(str);
 }
 
 t_node	*lstlast(t_node *lst)
