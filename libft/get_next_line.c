@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:56:03 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/02/20 21:46:08 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:40:51 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,11 @@ static char	*get_line(char *saved)
 		return (NULL);
 	while (saved[i] != '\n' && saved[i])
 		i++;
-	line = malloc(sizeof(char) * (i + 2));
+	line = malloc(sizeof(char) * (i + 1));
 	if (!line)
 		return (NULL);
 	i = 0;
 	while (saved[i] != '\n' && saved[i])
-	{
-		line[i] = saved[i];
-		i++;
-	}
-	if (saved[i] == '\n')
 	{
 		line[i] = saved[i];
 		i++;
@@ -117,7 +112,7 @@ static char	*read_and_add(int fd, char *saved)
 	return (saved);
 }
 
-void	*get_next_line(int fd, char **result)
+void	*get_next_line(int fd)
 {
 	static char	*saved;
 	char		*line;
@@ -129,6 +124,5 @@ void	*get_next_line(int fd, char **result)
 		return (0);
 	line = get_line(saved);
 	saved = get_next(saved);
-	*result = line;
 	return (line);
 }

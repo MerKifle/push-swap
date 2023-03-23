@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 20:06:13 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:32:17 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	swap(t_node *stack, char *str)
 	int	temp;
 	int	temp2;
 
+	if (!stack || !stack->next)
+		return ;
 	temp = stack->data;
 	stack->data = stack->next->data;
 	stack->next->data = temp;
@@ -74,20 +76,6 @@ static void	rearrange_a(t_node **stack, int point)
 		while (ra_size--)
 			rotate(stack, "ra", 1);
 }
-/*
-assign_position:
-	this function assign current postion for all
-	elements of a and b
-	 e.g:
-		1 (0)	
-		5 (1)   3 (0)
-		8 (2)	0 (1)
-		a		b
-	in braces are postion for each elements
-	
-	if one of the element of b moved to b, 
-	the postion for both stacks will update
-*/
 
 void	push_swap(t_node **a)
 {
@@ -95,13 +83,17 @@ void	push_swap(t_node **a)
 
 	b = NULL;
 	if (is_sorted(*a))
-		exit(0);
+		return ;
 	else if (find_len(*a) == 2)
+	{
 		swap(*a, "sa");
+		return ;
+	}
 	else if (find_len(*a) >= 4)
 		move_to_b(a, &b);
 	sort_three(a);
-	push_to_a(a, &b);
+	if (b)
+		push_to_a(a, &b);
 	rearrange_a(a, 0);
 	free_linked_list(&b);
 	return ;
@@ -112,7 +104,6 @@ int	main(int argc, char **argv)
 	t_node	*a;
 	int		i;
 	char	*storage;
-	char	*str;
 
 	if (argc >= 2)
 	{
@@ -121,23 +112,23 @@ int	main(int argc, char **argv)
 			message(0);
 		storage = NULL;
 		while (argv[i])
-		{
-			storage = ft_strjoin(storage, argv[i++]);
-			storage = ft_strjoin(storage, " ");
-		}
+			storage = ft_strjoin(ft_strjoin(storage, argv[i++]), " ");
 		if (!check_invalid_args(storage) || !check_dup(storage))
+		{
+			free(storage);
 			message(0);
+		}
 		a = NULL;
-		create_linked_list(&storage, &a);
+		fill_a(&storage, &a);
 		put_sorting_index(&a);
 		push_swap(&a);
 		free_linked_list(&a);
-	}	
+	}
 	return (0);
 }
 
-		// while (a)
-		// {
-		// 	printf("%d : %d\n", a->data, a->sort_index);
-		// 	a = a->next;
-		// }
+	// while (a)
+	// {
+	// 	printf("%d : %d\n", a->data, a->sort_index);
+	// 	a = a->next;
+	// }

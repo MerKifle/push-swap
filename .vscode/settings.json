@@ -25,6 +25,18 @@
 		"type_traits": "c",
 		"unordered_map": "c",
 		"utility": "c",
-		"vector": "c"
-	}
+		"vector": "c",
+		"libft.h": "c",
+		"__locale": "c",
+		"atomic": "c",
+		"cstdlib": "c",
+		"locale": "c",
+		"typeinfo": "c",
+		"complex": "c",
+		"new": "c",
+		"random": "c",
+		"ratio": "c",
+		"chrono": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

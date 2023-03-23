@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 20:08:08 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:16:18 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -39,10 +39,10 @@ void	swap(t_node *stack, char *str);
 t_node	*lstlast(t_node *lst);
 int		is_sorted(t_node *stack);
 void	message(int nb);
-void	create_linked_list(char **storage, t_node **a);
+void	fill_a(char **storage, t_node **a);
 
 //free_allocated
-void	free_array(char ***str);
+int		free_array(char ***str);
 void	free_linked_list(t_node **stack);
 
 //validate_args
