@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/23 18:32:17 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:27:45 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,13 @@ int	main(int argc, char **argv)
 			message(0);
 		storage = NULL;
 		while (argv[i])
-			storage = ft_strjoin(ft_strjoin(storage, argv[i++]), " ");
-		if (!check_invalid_args(storage) || !check_dup(storage))
 		{
-			free(storage);
-			message(0);
+			if (argv[i][0] == '\0')
+				free_first(&storage);
+			storage = ft_strjoin(ft_strjoin(storage, argv[i++]), " ");
 		}
+		if (!check_invalid_args(storage) || !check_dup(storage))
+			free_first(&storage);
 		a = NULL;
 		fill_a(&storage, &a);
 		put_sorting_index(&a);
@@ -126,9 +127,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-	// while (a)
-	// {
-	// 	printf("%d : %d\n", a->data, a->sort_index);
-	// 	a = a->next;
-	// }

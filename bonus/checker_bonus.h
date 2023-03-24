@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:37:39 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/23 15:51:47 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:30:06 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	reverse_rotate(t_node **stack);
 //free_allocated
 int		free_array(char ***str);
 void	free_linked_list(t_node **stack);
+void	free_first(char **str);
 
 #endif

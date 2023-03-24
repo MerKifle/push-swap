@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/23 14:16:18 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:26:11 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	fill_a(char **storage, t_node **a);
 //free_allocated
 int		free_array(char ***str);
 void	free_linked_list(t_node **stack);
+void	free_first(char **str);
 
 //validate_args
 int		check_dup(char *str);

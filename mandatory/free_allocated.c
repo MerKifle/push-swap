@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 19:51:15 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/23 15:50:44 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:25:58 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ int	free_array(char ***str)
 		free((*str)[i--]);
 	free(*str);
 	return (0);
+}
+
+void	free_first(char **str)
+{
+	free(*str);
+	message(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkiflema <mkiflema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:37:26 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/23 16:43:38 by mkiflema         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:29:43 by mkiflema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,13 @@ int	main(int argc, char **argv)
 			message();
 		storage = NULL;
 		while (argv[i])
-			storage = ft_strjoin(ft_strjoin(storage, argv[i++]), " ");
-		if (!check_invalid_args(storage) || !check_dup(storage))
 		{
-			free(storage);
-			message();
+			if (argv[i][0] == '\0')
+				free_first(&storage);
+			storage = ft_strjoin(ft_strjoin(storage, argv[i++]), " ");
 		}
+		if (!check_invalid_args(storage) || !check_dup(storage))
+			free_first(&storage);
 		a = NULL;
 		fill_a(&storage, &a);
 		read_user_input(&a);
